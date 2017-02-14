@@ -1,0 +1,36 @@
+
+<!--pages/shoporder/shoporder.wxml-->
+<view>
+  <view class="order-shop-list">
+
+    <!--购物车商品列表-->
+    <view wx:for="{{orderShopList}}">
+      <view class="orderShopList" data-item-index="{{index}}" bindtap="onItemClick">
+        <view class="first-line">
+          <text>{{item.BillDate}}</text>
+          <text class="delete-btn">删除订单</text>
+        </view>
+        <view>
+          <text class="text-left">订单编号</text>
+          <text>{{item.BillNo}}</text>
+        </view>
+        <view>
+          <text class="text-left">经手人</text>
+          <text>{{item.EmpFullName}}</text>
+          <text class="text-money">¥ {{item.TotalTaxAmount}}</text>
+        </view>
+        <view>
+          <text class="text-left">收货地址</text>
+          <text>{{item.Address}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-pay">
+    <view>
+      <button class="btn-area-button" bindtap="goToPay" type="warn">创建订单</button>
+    </view>
+    <view>
+    </view>
+  </view>
+</view>

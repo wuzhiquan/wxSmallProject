@@ -1,0 +1,140 @@
+
+<!--pages/order/order.wxml-->
+<view class="order-wrap">
+  <view hidden="{{!showPart}}">
+
+    <!--收货人信息-->
+    <view class="order-block">
+      <text class="block-title">收货人信息</text>
+      <view class="info-list">
+        <text>姓名</text>
+        <input type="text" placeholder="请输入姓名" />
+      </view>
+      <view class="info-list">
+        <text>电话</text>
+        <input type="text" placeholder="请输入电话" />
+      </view>
+      <view class="info-list">
+        <text>地址</text>
+        <input type="text" placeholder="请输入地址" />
+      </view>
+    </view>
+
+    <!--订购人信息-->
+    <view class="order-block">
+      <text class="block-title">订购人信息</text>
+      <view class="info-list">
+        <text>姓名</text>
+        <input type="text" placeholder="请输入姓名" />
+      </view>
+      <view class="info-list">
+        <text>手机</text>
+        <input type="text" placeholder="请输入手机" />
+      </view>
+      <view class="info-list">
+        <text>邮箱</text>
+        <input type="text" placeholder="请输入邮箱" />
+      </view>
+      <view class="choose-option">
+        <text>支付方式</text>
+        <radio-group>
+          <label wx:for="{{payWay}}" wx:for-item="pay" bindtap="selectPay" data-payway="{{pay.name}}">
+            <icon wx:if="{{pay.checked}}" type="success" size="20" color="#E64340" />
+            <icon wx:else type="circle" size="20" />
+            <text>{{pay.value}}</text>
+          </label>
+        </radio-group>
+      </view>
+      <view class="choose-option">
+        <text>配送方式</text>
+        <radio-group>
+          <label wx:for="{{sendwayData}}" wx:for-item="sendway" bindtap="selectSendway" data-sendway="{{sendway.name}}">
+            <icon wx:if="{{sendway.checked}}" type="success" size="20" color="#E64340" />
+            <icon wx:else type="circle" size="20" />
+            <text>{{sendway.value}}</text>
+          </label>
+        </radio-group>
+      </view>
+    </view>
+    <view class="order-button">
+      <button type="warn" size="default" bindtap="nextStep"> 下一步 </button>
+    </view>
+  </view>
+  <view hidden="{{showPart}}">
+
+    <!--配送时间及留言卡片-->
+    <view class="order-block">
+      <text class="block-title">额外信息</text>
+      <view class="info-list">
+        <text>配送时间</text>
+        <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+          <view>{{date}}</view>
+        </picker>
+      </view>
+      <view class="textarea-list">
+        <text>留言</text>
+        <textarea placeholder="请输入留言" />
+      </view>
+      <view class="info-list">
+        <text>卡片签名</text>
+        <input type="text" placeholder="请输入卡片签名" />
+      </view>
+      <view class="textarea-list">
+        <text>特殊要求</text>
+        <textarea placeholder="请输入特殊要求" />
+      </view>
+    </view>
+    <view class="order-button">
+      <button type="warn" size="default"> 提交订单 </button>
+    </view>
+    <view bindtap="backFor" class="backFor">返回上一步</view>
+  </view>
+  <view class="openGoodsList" bindtap="openGoodsList">
+    <image src="../../img/left_icon.png"></image>
+  </view>
+  <view class="goodsListPage {{openGoodsList?'right_100':'right_0'}}" catchtouchmove="stopTouch">
+    <view class="list-right">
+      <view class="closeGoodList" bindtap="closeGoodsList">
+        <image src="../../img/right_icon.png"></image>
+      </view>
+      <scroll-view scroll-y="true" class="scrollList">
+        <view class="item-list" wx:for="{{goodsList}}" wx:for-item="list">
+          <view class="left">
+            <image src="{{list.picSrc}}"></image>
+          </view>
+          <view class="right">
+            <view class="count-option plus" data-index="{{index}}" bindtap="plusList"></view>
+            <view class="count-num">{{list.orderNum}}</view>
+            <view class="count-option add" data-index="{{index}}" bindtap="addList"></view>
+          </view>
+          <view class="center">
+            <text class="goodsName">{{list.goodsName}}</text>
+            <text class="goodsPrice">单价：¥{{list.goodsPrice}}</text>
+            <text class="goodsNumber">编号：{{list.goodsNumber}}</text>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="scrollWrap" hidden="{{openCartDetail}}">
+        <view class="closeDetail" bindtap="closeCartDetail">×</view>
+        <scroll-view class="scrollDetail" scroll-y="true">
+          <view class="detailCon">
+            <view class="detailList" wx:for="{{detailList}}" wx:for-item="detail">
+              <text class="name">{{detail.name}}</text>
+              <text class="num">{{detail.num}} *</text>
+              <text class="price"> 单价{{detail.price}}</text>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+      <view class="operate">
+        <view class="cart">
+          <view>
+            <image src="../../img/cart-icon.png" class="icon"></image>
+            <text class="totalFee">总价：{{totalFee}}元</text>
+          </view>
+        </view>
+        <view class="sure" bindtap="openCartDetail">查看订单</view>
+      </view>
+    </view>
+  </view>
+</view>

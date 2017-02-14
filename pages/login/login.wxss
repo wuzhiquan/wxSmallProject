@@ -1,0 +1,33 @@
+/* pages/login/login.wxss */
+
+.container {
+  padding: 32rpx;
+  font-size: 28rpx;
+  line-height: 48rpx;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 26rpx;
+}
+
+.row text {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.row input {
+  font-size: 24rpx;
+  color: #ccc;
+  flex-grow: 3;
+  border: 1px solid #09c;
+  display: inline-block;
+  border-radius: 6rpx;
+  box-shadow: 0 0 4rpx #aaa;
+  padding: 12rpx;
+}
+
+.row button {
+  padding: 0 64rpx;
+}

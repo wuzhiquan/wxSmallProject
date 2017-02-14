@@ -1,0 +1,121 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>轮番</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		.wrap{
+			background: #ccc;
+			width: 100%;
+			height: 100%;
+			position: relative;
+		}
+		.wrap ul{
+			list-style: none;
+			width: 100%;
+			text-align: center;
+			position: absolute;
+			bottom:15px;
+		}
+		.wrap ul li {
+			display: inline-block;
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			background: #fff;
+			cursor: pointer;
+		}
+		.wrap ul li.active {
+			background: #333;
+		}
+		.wrap .cross-img{
+			width: 100%;
+			height: 100%;
+			display: inline-block;
+			text-align: center;
+		}
+		.wrap .cross-img div{
+			position: absolute;
+			top:0;
+			left:50%;
+			margin-left: -300px;
+			transition: 1.5s;
+		}
+		.hidden{
+			/*display: none;*/
+			opacity: 0;
+		}
+		.wrap .cross-img button {
+			background: pink;
+			outline: none;
+			border: 1px solid #fff;
+			width:120px;
+			cursor: pointer;
+			height: 36px;
+			line-height: 36px;
+			text-align: center;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="cross-img">
+			<div class>
+				<img src="images/shop_cart_img1.jpg" alt="" width="600" height="600">
+				<h3>图片一</h3>
+				<button>查看详情</button>
+			</div>
+			<div class="hidden">
+				<img src="images/shop_cart_img2.jpg" alt="" width="600" height="600">
+				<h3>图片二</h3>
+				<button>查看详情</button>
+			</div>
+			<div class="hidden">
+				<img src="images/shop_cart_img3.jpg" alt="" width="600" height="600">
+				<h3>图片三</h3>
+				<button>查看详情</button>
+			</div>
+			<div class="hidden">
+				<img src="images/shop_cart_img4.jpg" alt="" width="600" height="600">
+				<h3>图片四</h3>
+				<button>查看详情</button>
+			</div>
+			<div class="hidden">
+				<img src="images/shop_cart_img5.jpg" alt="" width="600" height="600">
+				<h3>图片五</h3>
+				<button>查看详情</button>
+			</div>
+		</div>
+		<ul class="lis">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<script src="js/jquery.js"></script>
+	<script>
+		var time = 0;
+		$('.lis li').click(function () {
+			time = $(this).index();
+			$('.cross-img div').addClass('hidden');
+			$('.cross-img div').eq(time % 5).removeClass('hidden');
+			$('.lis li').removeClass('active');
+			$('.lis li').eq(time % 5).addClass('active');
+		});
+		setInterval(function () {
+			console.log(time % 5);
+			time++;
+			$('.cross-img div').addClass('hidden');
+			$('.cross-img div').eq(time % 5).removeClass('hidden');
+			$('.lis li').removeClass('active');
+			$('.lis li').eq(time % 5).addClass('active');
+		}, 3000);
+	</script>
+</body>
+</html>
